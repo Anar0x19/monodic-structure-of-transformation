@@ -34,13 +34,12 @@ textToNotes (x:xs) = letterToNote x <> " " <> textToNotes xs
 
 -- Функция для преобразования нот в текст
 notesToText :: [String] -> String
-notesToText [] = mempty  -- Нейтральный элемент — пустая строка
+notesToText [] = mempty 
 notesToText (x:xs) = fromMaybe ' ' (noteToLetter x) : notesToText xs
 
--- Главная программа
 main :: IO ()
 main = do
-    putStrLn "Выберите режим работы программы:"
+    putStrLn "Выберите способ преоброзование работы программы:"
     putStrLn "1 - Преобразовать текст в музыкальную последовательность"
     putStrLn "2 - Преобразовать музыкальную последовательность в текст"
     choice <- getLine
@@ -51,10 +50,10 @@ main = do
             let notes = textToNotes input
             putStrLn $ "Музыкальная последовательность: " ++ notes
         "2" -> do
-            putStrLn "Введите музыкальную последовательность для преобразования в текст (например, C4 D4 E4):"
+            putStrLn "Введите музыкальную последовательность для преобразования в текст (к примеру: C4 D4 E4):"
             input <- getLine
             let noteList = words input  -- Разбиваем строку по пробелам на список нот
             let text = notesToText noteList
             putStrLn $ "Текст: " ++ text
-        _ -> putStrLn "Неверный выбор. Попробуйте снова."
+        _ -> putStrLn "Неверный выбор."
 
