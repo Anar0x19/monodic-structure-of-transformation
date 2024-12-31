@@ -15,7 +15,6 @@ letterToNote 'g' = "B4"
 letterToNote 'h' = "C5"
 letterToNote _   = "C4" -- Для остальных букв по умолчанию нота C4
 
--- Маппинг нот на буквы
 noteToLetter :: String -> Maybe Char
 noteToLetter "C4" = Just 'a'
 noteToLetter "D4" = Just 'b'
@@ -27,12 +26,10 @@ noteToLetter "B4" = Just 'g'
 noteToLetter "C5" = Just 'h'
 noteToLetter _    = Nothing
 
--- Функция для конкатенации нот из текста
 textToNotes :: String -> String
 textToNotes [] = mempty  -- Нейтральный элемент — пустая строка
 textToNotes (x:xs) = letterToNote x <> " " <> textToNotes xs
 
--- Функция для преобразования нот в текст
 notesToText :: [String] -> String
 notesToText [] = mempty 
 notesToText (x:xs) = fromMaybe ' ' (noteToLetter x) : notesToText xs
@@ -50,10 +47,10 @@ main = do
             let notes = textToNotes input
             putStrLn $ "Музыкальная последовательность: " ++ notes
         "2" -> do
-            putStrLn "Введите музыкальную последовательность для преобразования в текст (к примеру: C4 D4 E4):"
+            putStrLn "Введите музыкальную последовательность для преобразования в текст :"
             input <- getLine
-            let noteList = words input  -- Разбиваем строку по пробелам на список нот
+            let noteList = words input 
             let text = notesToText noteList
             putStrLn $ "Текст: " ++ text
-        _ -> putStrLn "Неверный выбор."
+        _ -> putStrLn "Err."
 
