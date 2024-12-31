@@ -3,7 +3,6 @@ module Main where
 import Data.Monoid
 import Data.Maybe (fromMaybe)
 
--- Маппинг букв на ноты
 letterToNote :: Char -> String
 letterToNote 'a' = "C4"
 letterToNote 'b' = "D4"
